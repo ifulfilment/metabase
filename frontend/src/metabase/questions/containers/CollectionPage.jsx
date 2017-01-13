@@ -4,6 +4,7 @@ import { push, replace, goBack } from "react-router-redux";
 
 import Icon from "metabase/components/Icon";
 import HeaderWithBack from "metabase/components/HeaderWithBack";
+import TitleAndDescription from "metabase/components/TitleAndDescription";
 
 import CollectionActions from "../components/CollectionActions";
 import ArchiveCollectionWidget from "./ArchiveCollectionWidget";
@@ -37,21 +38,21 @@ export default class CollectionPage extends Component {
         return (
             <div className="mx4 mt4">
                 <div className="flex align-center">
-                    <HeaderWithBack
+                    {/*<HeaderWithBack
                         name={collection && collection.name}
                         description={collection && collection.description}
                         onBack={window.history.length === 1 ?
                             () => push("/questions") :
                             () => goBack()
                         }
-                    />
-                    <div className="ml-auto">
+                    />*/}
+                    {/*<div className="ml-auto">
                         <CollectionActions>
                             { canEdit && <ArchiveCollectionWidget collectionId={this.props.collection.id} onArchived={this.props.goToQuestions}/> }
                             { canEdit && <Icon name="pencil" tooltip="Edit collection" onClick={() => this.props.editCollection(this.props.collection.id)} /> }
                             { canEdit && <Icon name="lock" tooltip="Set permissions" onClick={() => this.props.editPermissions(this.props.collection.id)} /> }
                         </CollectionActions>
-                    </div>
+                    </div>*/}
                 </div>
                 <div className="mt4">
                     <EntityList

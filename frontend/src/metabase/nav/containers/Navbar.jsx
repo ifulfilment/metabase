@@ -153,7 +153,9 @@ export default class Navbar extends Component {
             case "auth": return null;
             case "none": return this.renderEmptyNav();
             case "setup": return null;
-            default: return this.renderMainNav();
+            /** CHANGE: By default we will hide the nav bar for clients **/
+            default: return null;
         }
     }
 }
+ 

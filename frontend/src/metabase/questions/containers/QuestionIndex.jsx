@@ -82,7 +82,7 @@ export default class QuestionIndex extends Component {
                     </div>
                 }
                 {/* only show title if we're showing the questions AND collections, otherwise title goes in the main header */}
-                { showQuestions && showCollections &&
+                {/* showQuestions && showCollections &&
                     <div
                         className="inline-block mt2 mb2 cursor-pointer text-brand-hover"
                         onClick={() => this.setState({ questionsExpanded: !questionsExpanded })}
@@ -92,8 +92,8 @@ export default class QuestionIndex extends Component {
                             <h2>Everything Else</h2>
                         </div>
                     </div>
-                }
-                <Collapse isOpened={showQuestions && (questionsExpanded || !showCollections)} keepCollapsedContent={true}>
+                */}
+                {/*<Collapse isOpened={showQuestions && (questionsExpanded || !showCollections)} keepCollapsedContent={true}>
                     <EntityList
                         entityType="cards"
                         entityQuery={{ f: "all", collection: "", ...location.query }}
@@ -104,7 +104,7 @@ export default class QuestionIndex extends Component {
                         })}
                         defaultEmptyState="Questions that aren’t in a collection will be shown here"
                     />
-                </Collapse>
+                </Collapse>*/}
             </div>
         )
     }
@@ -117,8 +117,6 @@ const CollectionEmptyState = () =>
             <h3>Create collections for your saved questions</h3>
             <div className="mt1">
                 Collections help you organize your questions and allow you to decide who gets to see what.
-                {" "}
-                <Link to="http://metabase.com/FIXME">Learn more</Link>
             </div>
         </div>
         <Link to="/collections/create">

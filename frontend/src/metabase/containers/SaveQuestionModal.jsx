@@ -8,12 +8,23 @@ import Radio from "metabase/components/Radio.jsx";
 import Select, { Option } from "metabase/components/Select.jsx";
 import Button from "metabase/components/Button";
 import CollectionList from "metabase/questions/containers/CollectionList";
-
+import { getAllCollections, getWritableCollections } from "../questions/selectors.js";
+import { loadCollections } from "../questions/collections";
+import { connect } from "react-redux";
 import Query from "metabase/lib/query";
 import { cancelable } from "metabase/lib/promise";
 
 import "./SaveQuestionModal.css";
 
+const mapStateToProps = (state, props) => ({
+    collections: getAllCollections(state, props),
+})
+
+const mapDispatchToProps = ({
+    loadCollections
+})
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class SaveQuestionModal extends Component {
 
     constructor(props, context) {
@@ -27,10 +38,14 @@ export default class SaveQuestionModal extends Component {
             details: {
                 name: props.card.name || isStructured ? Query.generateQueryDescription(props.tableMetadata, props.card.dataset_query.query) : "",
                 description: props.card.description || null,
-                collection_id: props.card.collection_id || null,
+                collection_id: null,
                 saveType: props.originalCard ? "overwrite" : "create"
             }
         };
+    }
+
+    componentWillMount () {
+        this.props.loadCollections();
     }
 
     static propTypes = {
@@ -41,7 +56,6 @@ export default class SaveQuestionModal extends Component {
         saveFn: PropTypes.func.isRequired,
         onClose: PropTypes.func.isRequired
     }
-
     componentDidMount() {
         this.validateForm();
     }
@@ -76,6 +90,12 @@ export default class SaveQuestionModal extends Component {
     }
 
     formSubmitted = async (e) => {
+
+        if(!this.props.collections[0]) {
+            this.setState({ error: "No collection setup for this user." });
+            return;
+        }
+
         try {
             if (e) {
                 e.preventDefault();
@@ -93,7 +113,7 @@ export default class SaveQuestionModal extends Component {
                 description: details.saveType === "overwrite" ?
                     originalCard.description :
                     details.description ? details.description.trim() : null,
-                collection_id: details.collection_id
+                collection_id: this.props.collections[0].id
             };
 
             if (details.saveType === "create") {
@@ -209,7 +229,7 @@ export default class SaveQuestionModal extends Component {
                                         onChange={(e) => this.onChange("description", e.target.value)}
                                     />
                                 </FormField>
-                                <CollectionList writable>
+                                {/*<CollectionList writable>
                                 { (collections) => collections.length > 0 &&
                                     <FormField
                                         displayName="Which collection should this go in?"
@@ -237,7 +257,7 @@ export default class SaveQuestionModal extends Component {
                                         </Select>
                                     </FormField>
                                 }
-                                </CollectionList>
+                                </CollectionList>*/}
                             </div>
                         }
                     </ReactCSSTransitionGroup>

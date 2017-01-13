@@ -304,34 +304,34 @@ export default class QueryHeader extends Component {
         // add to dashboard
         if (!isNew && !isEditing) {
             // simply adding an existing saved card to a dashboard, so show the modal to do so
-            buttonSections.push([
-                <Tooltip key="addtodash" tooltip="Add to dashboard">
-                    <span data-metabase-event={"QueryBuilder;AddToDash Modal;normal"} className="cursor-pointer text-brand-hover" onClick={() => this.setState({ modal: "add-to-dashboard" })}>
-                        <Icon name="addtodash" size={16} />
-                    </span>
-                </Tooltip>
-            ]);
+            // buttonSections.push([
+            //     <Tooltip key="addtodash" tooltip="Add to dashboard">
+            //         <span data-metabase-event={"QueryBuilder;AddToDash Modal;normal"} className="cursor-pointer text-brand-hover" onClick={() => this.setState({ modal: "add-to-dashboard" })}>
+            //             <Icon name="addtodash" size={16} />
+            //         </span>
+            //     </Tooltip>
+            // ]);
         } else if (isNew && isDirty) {
             // this is a new card, so we need the user to save first then they can add to dash
-            buttonSections.push([
-                <Tooltip key="addtodashsave" tooltip="Add to dashboard">
-                    <ModalWithTrigger
-                        ref="addToDashSaveModal"
-                        triggerClasses="h4 text-brand-hover text-uppercase"
-                        triggerElement={<span data-metabase-event={"QueryBuilder;AddToDash Modal;pre-save"} className="text-brand-hover"><Icon name="addtodash" size={16} /></span>}
-                    >
-                        <SaveQuestionModal
-                            card={this.props.card}
-                            originalCard={this.props.originalCard}
-                            tableMetadata={this.props.tableMetadata}
-                            addToDashboard={true}
-                            saveFn={this.onSave}
-                            createFn={this.onCreate}
-                            onClose={() => this.refs.addToDashSaveModal.toggle()}
-                        />
-                    </ModalWithTrigger>
-                </Tooltip>
-            ]);
+            // buttonSections.push([
+            //     <Tooltip key="addtodashsave" tooltip="Add to dashboard">
+            //         <ModalWithTrigger
+            //             ref="addToDashSaveModal"
+            //             triggerClasses="h4 text-brand-hover text-uppercase"
+            //             triggerElement={<span data-metabase-event={"QueryBuilder;AddToDash Modal;pre-save"} className="text-brand-hover"><Icon name="addtodash" size={16} /></span>}
+            //         >
+            //             <SaveQuestionModal
+            //                 card={this.props.card}
+            //                 originalCard={this.props.originalCard}
+            //                 tableMetadata={this.props.tableMetadata}
+            //                 addToDashboard={true}
+            //                 saveFn={this.onSave}
+            //                 createFn={this.onCreate}
+            //                 onClose={() => this.refs.addToDashSaveModal.toggle()}
+            //             />
+            //         </ModalWithTrigger>
+            //     </Tooltip>
+            // ]);
         }
 
         // history icon on saved cards
@@ -357,35 +357,35 @@ export default class QueryHeader extends Component {
         }
 
         // query mode toggle
-        buttonSections.push([
-            <QueryModeButton
-                key="queryModeToggle"
-                mode={this.props.card.dataset_query.type}
-                allowNativeToQuery={isNew && !isDirty}
-                allowQueryToNative={tableMetadata ?
-                    // if a table is selected, only enable if user has native write permissions for THAT database
-                    tableMetadata.db && tableMetadata.db.native_permissions === "write" :
-                    // if no table is selected, only enable if user has native write permissions for ANY database
-                    _.any(databases, (db) => db.native_permissions === "write")
-                }
-                nativeForm={this.props.result && this.props.result.data && this.props.result.data.native_form}
-                onSetMode={this.props.setQueryModeFn}
-                tableMetadata={tableMetadata}
-            />
-        ]);
+        // buttonSections.push([
+        //     <QueryModeButton
+        //         key="queryModeToggle"
+        //         mode={this.props.card.dataset_query.type}
+        //         allowNativeToQuery={isNew && !isDirty}
+        //         allowQueryToNative={tableMetadata ?
+        //             // if a table is selected, only enable if user has native write permissions for THAT database
+        //             tableMetadata.db && tableMetadata.db.native_permissions === "write" :
+        //             // if no table is selected, only enable if user has native write permissions for ANY database
+        //             _.any(databases, (db) => db.native_permissions === "write")
+        //         }
+        //         nativeForm={this.props.result && this.props.result.data && this.props.result.data.native_form}
+        //         onSetMode={this.props.setQueryModeFn}
+        //         tableMetadata={tableMetadata}
+        //     />
+        // ]);
 
         // data reference button
         var dataReferenceButtonClasses = cx('mr1 transition-color', {
             'text-brand': this.props.isShowingDataReference,
             'text-brand-hover': !this.state.isShowingDataReference
         });
-        buttonSections.push([
-            <Tooltip key="dataReference" tooltip="Learn about your data">
-                <a className={dataReferenceButtonClasses}>
-                    <Icon name='reference' size={16} onClick={this.onToggleDataReference}></Icon>
-                </a>
-            </Tooltip>
-        ]);
+        // buttonSections.push([
+        //     <Tooltip key="dataReference" tooltip="Learn about your data">
+        //         <a className={dataReferenceButtonClasses}>
+        //             <Icon name='reference' size={16} onClick={this.onToggleDataReference}></Icon>
+        //         </a>
+        //     </Tooltip>
+        // ]);
 
         return (
             <ButtonBar buttons={buttonSections} className="Header-buttonSection borderless" />

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# ED: Dev notes can be found here :)
+# http://www.metabase.com/docs/latest/developers-guide.html
+
+echo "What is the database host:"
+read host
+echo "What is the database port (normally 3306):"
+read port
+echo "What is the database name:"
+read database
+echo "What is the database username:"
+read username
+echo "What is the database password:"
+read password
+echo "Starting up! Please wait..."
+echo "You can run 'yarn run build-watch' to recomiple the frontend css/js as a one off,"
+echo "Or you can run 'yarn run build-hot' to watch the files and recomiple and reload on the fly (this doesnt always wrok for me though..)!"
+
+MB_DB_TYPE="mysql" MB_DB_DBNAME=database MB_DB_PORT=port MB_DB_USER=username MB_DB_PASS=password MB_DB_HOST=host lein ring server

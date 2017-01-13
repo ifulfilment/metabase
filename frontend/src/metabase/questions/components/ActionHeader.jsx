@@ -38,7 +38,7 @@ const ActionHeader = ({ visibleCount, selectedCount, allAreSelected, sectionIsAr
                     count={selectedCount}
                 />
             : null }
-            <ModalWithTrigger
+            {/*<ModalWithTrigger
                 full
                 triggerElement={
                     <span className={S.actionButton} >
@@ -48,7 +48,7 @@ const ActionHeader = ({ visibleCount, selectedCount, allAreSelected, sectionIsAr
                 }
             >
                 <MoveToCollection />
-            </ModalWithTrigger>
+            </ModalWithTrigger>*/}
             <span className={S.actionButton} onClick={() => setArchived(undefined, !sectionIsArchive, true)}>
                 <Icon name={ sectionIsArchive ? "unarchive" : "archive" }  className="mr1" />
                 { sectionIsArchive ? "Unarchive" : "Archive" }

@@ -138,89 +138,89 @@ export default class DashboardHeader extends Component {
         if (isEditing) {
 
             // Parameters
-            buttons.push(
-                <span>
-                    <Tooltip tooltip="Add a Filter">
-                        <a
-                          key="parameters"
-                          className={cx("text-brand-hover", { "text-brand": this.state.modal == "parameters" })}
-                          title="Parameters"
-                          onClick={() => this.setState({ modal: "parameters" })}
-                        >
-                            <Icon name="funneladd" size={16} />
-                        </a>
-                    </Tooltip>
+            // buttons.push(
+            //     <span>
+            //         <Tooltip tooltip="Add a Filter">
+            //             <a
+            //               key="parameters"
+            //               className={cx("text-brand-hover", { "text-brand": this.state.modal == "parameters" })}
+            //               title="Parameters"
+            //               onClick={() => this.setState({ modal: "parameters" })}
+            //             >
+            //                 <Icon name="funneladd" size={16} />
+            //             </a>
+            //         </Tooltip>
 
-                    {this.state.modal && this.state.modal === "parameters" &&
-                        <Popover onClose={() => this.setState({modal: false})}>
-                            <ParametersPopover
-                                onAddParameter={this.props.addParameter}
-                                onClose={() => this.setState({modal: false})}
-                            />
-                        </Popover>
-                    }
-                </span>
-            );
+            //         {this.state.modal && this.state.modal === "parameters" &&
+            //             <Popover onClose={() => this.setState({modal: false})}>
+            //                 <ParametersPopover
+            //                     onAddParameter={this.props.addParameter}
+            //                     onClose={() => this.setState({modal: false})}
+            //                 />
+            //             </Popover>
+            //         }
+            //     </span>
+            // );
 
-            buttons.push(
-                <ModalWithTrigger
-                    key="history"
-                    ref="dashboardHistory"
-                    triggerElement={
-                        <Tooltip tooltip="Revision History">
-                            <span data-metabase-event={"Dashboard;Revisions"}>
-                                <Icon className="text-brand-hover" name="history" size={16} />
-                            </span>
-                        </Tooltip>
-                    }
-                >
-                    <HistoryModal
-                        entityType="dashboard"
-                        entityId={dashboard.id}
-                        revisions={this.props.revisions["dashboard-"+dashboard.id]}
-                        onFetchRevisions={this.onFetchRevisions.bind(this)}
-                        onRevertToRevision={this.onRevertToRevision.bind(this)}
-                        onClose={() => this.refs.dashboardHistory.toggle()}
-                        onReverted={() => this.onRevertedRevision()}
-                    />
-                </ModalWithTrigger>
-            );
+            // buttons.push(
+            //     <ModalWithTrigger
+            //         key="history"
+            //         ref="dashboardHistory"
+            //         triggerElement={
+            //             <Tooltip tooltip="Revision History">
+            //                 <span data-metabase-event={"Dashboard;Revisions"}>
+            //                     <Icon className="text-brand-hover" name="history" size={16} />
+            //                 </span>
+            //             </Tooltip>
+            //         }
+            //     >
+            //         <HistoryModal
+            //             entityType="dashboard"
+            //             entityId={dashboard.id}
+            //             revisions={this.props.revisions["dashboard-"+dashboard.id]}
+            //             onFetchRevisions={this.onFetchRevisions.bind(this)}
+            //             onRevertToRevision={this.onRevertToRevision.bind(this)}
+            //             onClose={() => this.refs.dashboardHistory.toggle()}
+            //             onReverted={() => this.onRevertedRevision()}
+            //         />
+            //     </ModalWithTrigger>
+            // );
         }
 
         if (!isFullscreen && !isEditing && canEdit) {
-            buttons.push(
-                <Tooltip tooltip="Edit Dashboard">
-                    <a data-metabase-event="Dashboard;Edit" key="edit" title="Edit Dashboard Layout" className="text-brand-hover cursor-pointer" onClick={() => this.onEdit()}>
-                        <Icon name="pencil" size={16} />
-                    </a>
-                </Tooltip>
-            );
+            // buttons.push(
+            //     <Tooltip tooltip="Edit Dashboard">
+            //         <a data-metabase-event="Dashboard;Edit" key="edit" title="Edit Dashboard Layout" className="text-brand-hover cursor-pointer" onClick={() => this.onEdit()}>
+            //             <Icon name="pencil" size={16} />
+            //         </a>
+            //     </Tooltip>
+            // );
         }
 
         if (!isFullscreen && canEdit) {
-            buttons.push(
-                <ModalWithTrigger
-                    full
-                    key="add"
-                    ref="addQuestionModal"
-                    triggerElement={
-                        <Tooltip tooltip="Add Card">
-                            <span data-metabase-event="Dashboard;Add Card Modal" title="Add a question to this dashboard">
-                                <Icon className={cx("text-brand-hover cursor-pointer", { "Icon--pulse": isEmpty })} name="add" size={16} />
-                            </span>
-                        </Tooltip>
-                    }
-                >
-                    <AddToDashSelectQuestionModal
-                        dashboard={dashboard}
-                        cards={this.props.cards}
-                        fetchCards={this.props.fetchCards}
-                        addCardToDashboard={this.props.addCardToDashboard}
-                        onEditingChange={this.props.onEditingChange}
-                        onClose={() => this.refs.addQuestionModal.toggle()}
-                    />
-                </ModalWithTrigger>
-            );
+            // buttons.push(
+            //     <ModalWithTrigger
+            //         full
+            //         key="add"
+            //         ref="addQuestionModal"
+            //         triggerElement={
+            //             <Tooltip tooltip="Add Card">
+            //                 <span data-metabase-event="Dashboard;Add Card Modal" title="Add a question to this dashboard">
+            //                     <Icon className={cx("text-brand-hover cursor-pointer", { "Icon--pulse": isEmpty })} name="add" size={16} />
+            //                 </span>
+            //             </Tooltip>
+            //         }
+            //     >
+            //         <AddToDashSelectQuestionModal
+            //             dashboard={dashboard}
+            //             cards={this.props.cards}
+            //             fetchCards={this.props.fetchCards}
+            //             addCardToDashboard={this.props.addCardToDashboard}
+            //             onEditingChange={this.props.onEditingChange}
+            //             onClose={() => this.refs.addQuestionModal.toggle()}
+            //         />
+            //     </ModalWithTrigger>
+            // );
         }
 
         if (!isEditing && !isEmpty) {

@@ -330,7 +330,7 @@ export default class Dashboard extends Component {
             <LoadingAndErrorWrapper style={{ minHeight: "100%" }} className={cx("Dashboard flex-full", { "Dashboard--fullscreen": isFullscreen, "Dashboard--night": isNightMode})} loading={!dashboard} error={error}>
             {() =>
                 <div className="full" style={{ overflowX: "hidden" }}>
-                    <header className="DashboardHeader relative z2">
+                    {/*<header className="DashboardHeader relative z2">
                         <DashboardHeader
                             {...this.props}
                             isFullscreen={this.state.isFullscreen}
@@ -345,7 +345,7 @@ export default class Dashboard extends Component {
                             addParameter={this.addParameter}
                             parameters={parameters}
                         />
-                    </header>
+                    </header>*/}
                     {!isFullscreen && parameters && parameters.length > 0 &&
                         <div className="wrapper flex flex-column align-start mt1">
                             <div className="flex flex-row align-end" ref="parameters">

@@ -69,7 +69,7 @@ const Item = ({
             />
             { setArchived &&
                 <div className="hover-child mt1 ml-auto">
-                    <ModalWithTrigger
+                    {/*<ModalWithTrigger
                         full
                         triggerElement={
                             <Tooltip tooltip="Move to a collection">
@@ -85,7 +85,7 @@ const Item = ({
                             questionId={id}
                             initialCollectionId={collection && collection.id}
                         />
-                    </ModalWithTrigger>
+                    </ModalWithTrigger>*/}
                     <Tooltip tooltip={archived ? "Unarchive" : "Archive"}>
                         <Icon
                             className="text-light-blue cursor-pointer text-brand-hover transition-color"
