@@ -104,6 +104,15 @@ export default class SaveQuestionModal extends Component {
             let { details } = this.state;
             let { card, originalCard, addToDashboard, createFn, saveFn } = this.props;
 
+            var collection_id = null;
+
+            for(var i =0; i < this.props.collections.length; i++){
+                if(this.props.collections[i].slug.indexOf("internal") == -1){
+                    collection_id = this.props.collections[i].id;
+                    break;
+                }
+            }
+
             card = {
                 ...card,
                 name: details.saveType === "overwrite" ?
@@ -113,7 +122,7 @@ export default class SaveQuestionModal extends Component {
                 description: details.saveType === "overwrite" ?
                     originalCard.description :
                     details.description ? details.description.trim() : null,
-                collection_id: this.props.collections[0].id
+                collection_id: collection_id
             };
 
             if (details.saveType === "create") {

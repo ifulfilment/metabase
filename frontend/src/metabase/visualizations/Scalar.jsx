@@ -133,7 +133,7 @@ export default class Scalar extends Component {
                     {compactScalarValue}
                 </Ellipsified>
                 <Ellipsified className={styles.Title} tooltip={card.name}>
-                    <Link to={Urls.card(card.id)} className="no-decoration fullscreen-normal-text fullscreen-night-text">{settings["card.title"]}</Link>
+                    {settings["card.title"]}
                 </Ellipsified>
             </div>
         );
